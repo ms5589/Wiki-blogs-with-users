@@ -1,0 +1,9 @@
+<%- include('../layout/header', {title: "Blogs List", user: user}) %>
+<% title = "Blogs List" %>
+<h1>List of Blog</h1>
+<ul>
+    <% blog.forEach(function(blg) { %>
+    <%- include('_blog', {blog: blg}) %>
+  <% }); %>
+</ul>
+<a href="/blog/new">Add Blog</a>

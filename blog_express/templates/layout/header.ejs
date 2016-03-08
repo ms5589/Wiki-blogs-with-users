@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href="/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="right">
+      <% if(user.username == "Guest") { %>
+        Please <a href="/login">Login</a>
+      <% } else { %>
+        Welcome <%= user.username %>.  Not you? <a href="/logout">logout</a>
+      <% } %>
+    </div>

@@ -1,0 +1,15 @@
+<%- include('../layout/header', {title: "Add Blog to Wiki", user: user}) %>
+<h1>Add Blog to WiKi </h1>
+<form action="/blog" method="POST">
+  <p>
+    <label for="title">Title:</label>
+    <input name="title" type="text" />
+  </p>
+  <p>
+    <label for="body">Body</label>
+    <textarea name="body"></textarea>
+  </p>
+  <p>
+    <input type="submit" value="Save" />
+  </p>
+</form>
