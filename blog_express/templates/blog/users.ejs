@@ -1,0 +1,16 @@
+
+<html>
+<body onload="myFunction()">
+<h1>List of users</h1>
+
+    <% blog.forEach(function(blg) { %>
+    <%- include('_user', {blog: blg}) %>
+    <% }); %>
+  </ul>
+</br><a class='bttn' href="/blog">List of blogs</a>
+</body>
+<script>
+
+
+
+</script>

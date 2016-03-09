@@ -10,13 +10,13 @@ db.serialize(function() {
   // Create a default user
   var salt = encryption.salt();
    db.run("INSERT INTO users (username, admin, password_digest, salt) values (?,?,?,?)",
-    'noadmin',
-    false,
-    encryption.digest('656565' + salt),
+    'sagar5589',
+    true,
+    encryption.digest('12345' + salt),
     salt
   );
   // Log contents of the user table to the console
-  
+
   db.each("SELECT * FROM users", function(err, row){
     if(err) return console.error(err);
     //console.log(row);

@@ -1,0 +1,25 @@
+<%- include('../layout/header', {title: "Login", user: user}) %>
+<html>
+<body>
+<h1>Sign up</h1>
+<div class="message">
+  <%= message %>
+</div>
+<form action="/signup" method="POST">
+  <label for="username">Select a Username
+    <input name="username" onkeyup="check()" type="text">
+  </label>
+  <label for="password">Choose Password
+     <input name="password" type="password">
+  </label>
+  <input type="submit" id="signup" value="Sign up">
+</form>
+</body>
+<script>
+var users =[];
+function check(){
+}
+</script>
+
+
+</html>

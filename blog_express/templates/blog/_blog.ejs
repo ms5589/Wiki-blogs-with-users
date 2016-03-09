@@ -1,7 +1,11 @@
-<li>
-  <a href="/blog/<%= blog.id %>">
-    <%= blog.title %>
-    [<%= blog.body %>]
+<link rel ="stylesheet" href="prism.css"/>
+<script src="prism.js"> </script>
+
+<h1> <li>
+  <a href="/blog/<%= blog.postId %>">
+    <%= blog.postId %>
+    [<%= blog.title %>]
   </a> &nbsp;
-  <a class='bttn' href="/blog/<%= blog.id %>/delete">x</a>
-</li>
+  <a class='bttn' href="/blog/<%= blog.postId %>/delete">x</a>
+
+</li> </h1>

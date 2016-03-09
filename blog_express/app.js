@@ -1,10 +1,23 @@
 var express = require('express'),
     app = express(),
+    fs = require('fs'),
     sessions = require('client-sessions'),
     loadUser = require('./middleware/load_user'),
     noGuests = require('./middleware/no_guests'),
     adminOnly = require('./middleware/admin_only'),
     encryption = require('./encryption');
+    var data1 = fs.readFileSync('prism/prism.css', {encoding: "utf-8"});
+    var data2= fs.readFileSync('prism/prism.js', {encoding: "utf-8"});
+
+app.get('/prism.js', function(req, res){
+    res.writeHead(200, {'Content-Type': 'text/javascript'})
+    res.end(data2);
+});
+
+app.get('/prism.css', function(req, res){
+    res.writeHead(200, {'Content-Type': 'text/css'})
+    res.end(data1);
+});
 
 // Enable template engine
 app.set('view engine', 'ejs');
@@ -28,15 +41,18 @@ app.use(express.static('public'));
 var session = require('./endpoints/session');
 app.get('/login', session.new);
 app.post('/login', session.create);
+app.get('/signup', session.sign);
+app.post('/signup', session.signup);
 app.get('/logout', session.destroy);
 
-// Equipment routes
+// Blog routes
 var blog = require('./endpoints/blog');
 app.get('/blog', blog.index);
-app.get('/blog/new', blog.new);
+app.get('/blog/new', noGuests, blog.new);
 app.get('/blog/:id', blog.show);
+app.get('/users', adminOnly, blog.users);
 app.post('/blog', blog.create);
-app.get('/blog/:id/delete', blog.destroy);
+app.get('/blog/:id/delete', noGuests, blog.destroy);
 
 // Reservation routes
 var reservation = require('./endpoints/reservation');

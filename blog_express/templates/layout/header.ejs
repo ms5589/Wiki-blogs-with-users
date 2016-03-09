@@ -7,7 +7,7 @@
   <body>
     <div class="right">
       <% if(user.username == "Guest") { %>
-        Please <a href="/login">Login</a>
+        Have an account? Please <a href="/login">Login</a>
       <% } else { %>
         Welcome <%= user.username %>.  Not you? <a href="/logout">logout</a>
       <% } %>

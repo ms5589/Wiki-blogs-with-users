@@ -2,7 +2,7 @@
 
 var db = require('../db'),
     formidable = require('formidable');
-
+//this is temp comment
 // A controller for the equipment resource
 // This should have methods for all the RESTful actions
 class Blog {
@@ -14,6 +14,26 @@ class Blog {
         return res.sendStatus(500);
       }
       res.render('blog/index', {blog: blog, user: req.user});
+    });
+  }
+
+  check(req,res){
+    var blog = db.all('SELECT * FROM users', function(err, item){
+      if(err) {
+        console.error(err);
+        return res.sendStatus(400);
+      }
+      res.render('blog/check', {blog: item, user: req.user});
+    });
+  }
+
+  users(req, res) {
+    var blog = db.all('SELECT * FROM users', function(err, item){
+      if(err) {
+        console.error(err);
+        return res.sendStatus(400);
+      }
+      res.render('blog/users', {blog: item, user: req.user});
     });
   }
 
@@ -43,7 +63,7 @@ class Blog {
   }
 
   destroy(req, res) {
-    db.run('DELETE FROM Post WHERE PostId=?', req.params.id);
+    db.run('DELETE FROM Post WHERE postId=?', req.params.id);
     res.redirect('/blog');
   }
 

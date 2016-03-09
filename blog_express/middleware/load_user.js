@@ -17,5 +17,4 @@ function loadUser(req, res, next) {
     next();
   }
 }
-
 module.exports = exports = loadUser;

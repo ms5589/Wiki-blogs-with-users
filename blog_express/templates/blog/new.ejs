@@ -1,15 +1,17 @@
 <%- include('../layout/header', {title: "Add Blog to Wiki", user: user}) %>
 <h1>Add Blog to WiKi </h1>
 <form action="/blog" method="POST">
-  <p>
-    <label for="title">Title:</label>
-    <input name="title" type="text" />
-  </p>
-  <p>
-    <label for="body">Body</label>
-    <textarea name="body"></textarea>
-  </p>
-  <p>
-    <input type="submit" value="Save" />
-  </p>
+<p>
+  <label for="title" font-size="26px" color="Black">Title:</label></br>
+  <input name="title" type="text" autocomplete="off" style="font-size: 16px; width: 1000px; height: 40px;"/></br> </br>
+
+  <label for="body">Write here:</label></br>
+  <input name="body" type="text" id="body"
+  value="<pre><code class='language-javascript'> //Write your code here...</code></pre>"
+  onkeyup="myFunction()" autocomplete="off" style= "margin-top:0px; font-size: 23px; width: 1000px; height: 200px;"/> </br> </br>
+  </code> </pre>
+
+  <input type="submit" value="Save" />
+
+</p>
 </form>
