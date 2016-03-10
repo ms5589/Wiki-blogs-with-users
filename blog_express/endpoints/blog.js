@@ -99,7 +99,7 @@ class Blog {
      form.parse(req, function(err, fields, files) {
      db.run('INSERT INTO Comment(postid, body) values (?,?)', temp, fields.comment);
      console.log("Comment added", temp);
-     res.redirect('/blog');
+     res.redirect('/blog/'+temp+'/preview');
    });
  }
 
@@ -120,6 +120,13 @@ class Blog {
 
   destroy(req, res) {
     db.run('DELETE FROM Post WHERE postId=?', req.params.id);
+    db.run('DELETE FROM Comment WHERE postid=?', req.params.id);
+    res.redirect('/blog');
+  }
+
+  del(req, res) {
+    
+    db.run('DELETE FROM Comment WHERE comntId=?', req.params.id);
     res.redirect('/blog');
   }
 
