@@ -1,17 +1,31 @@
 <html>
+
+<link rel ="stylesheet" href="/prism.css"/>
+<script src="/prism.js"> </script>
+
 <body>
 
  <label for="user" font-size="46px">Username:</label>
  <input name="user" type="text" id="user"
- value="<%= blog.username %>" autocomplete="off" />
+ value="<%= blog.username %>" readonly="readonly" autocomplete="off" />
 
  <label for="admin" font-size="46px">Admin:</label>
  <input name="admin" type="text" id="admin"
- value="<%= blog.admin %>" autocomplete="off" /> </br>
+ value="<%= blog.admin %>" onclick="change()"readonly="readonly" autocomplete="off" /> </br>
 
 </body>
 
 <script>
-
+function change(){
+  alert("yo");
+  if("<%= blog.admin %>" == 1){
+  alert("Lol");
+  return "Yes"; }
+  else {
+  document.getElementById("admin").value = "NO";
+  }
+  //document.getElementById("admin").value = "Yes";
+ }
+}
 </script>
 </html>

@@ -6,8 +6,8 @@ var express = require('express'),
     noGuests = require('./middleware/no_guests'),
     adminOnly = require('./middleware/admin_only'),
     encryption = require('./encryption');
-    var data1 = fs.readFileSync('prism/prism.css', {encoding: "utf-8"});
-    var data2= fs.readFileSync('prism/prism.js', {encoding: "utf-8"});
+    var data1 = fs.readFileSync('templates/blog/prism.css', {encoding: "utf-8"});
+    var data2 = fs.readFileSync('templates/blog/prism.js', {encoding: "utf-8"});
 
 app.get('/prism.js', function(req, res){
     res.writeHead(200, {'Content-Type': 'text/javascript'})
@@ -50,8 +50,12 @@ var blog = require('./endpoints/blog');
 app.get('/blog', blog.index);
 app.get('/blog/new', noGuests, blog.new);
 app.get('/blog/:id', blog.show);
-app.get('/users', adminOnly, blog.users);
+app.get('/blog/:id/edit',noGuests, blog.edit);
+app.post('/blog/:id', blog.change);
+app.post('/blog/:id/add',noGuests, blog.add);
 app.post('/blog', blog.create);
+app.get('/blog/:id/preview', blog.preview);
+app.get('/users', adminOnly, blog.users);
 app.get('/blog/:id/delete', noGuests, blog.destroy);
 
 // Reservation routes

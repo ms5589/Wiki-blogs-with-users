@@ -1,0 +1,46 @@
+<link rel ="stylesheet" href="/prism.css"/>
+<script src="/prism.js"> </script>
+
+<body onload="readData()">
+<div id="demo">
+
+<form id= "form" action="/blog/<%=blog.postId%>" method="POST">
+
+<label for="title" font-size="46px">Title:</label></br>
+<input name="title" id="title" type="text" autocomplete="off" style="font-size: 18px; width: 1000px; height: 32px;"/> </br></br>
+
+<label for="body" font-size="46px">Body:</label></br>
+<input name="body" id="body" type="text"  autocomplete="off" style="font-size: 18px; width: 1000px; height: 104px;"/> </br></br>
+
+<button type="submit" onclick="save" style= "font-size: 12px; height: 30px" >Save changes</button> </br></br>
+
+</form> </br>
+
+<fieldset>
+<a href="/blog/new">Add a new Blog</a>&nbsp&nbsp&nbsp&nbsp
+<a href="/blog/">List of Blogs</a>
+</fieldset>
+
+<script>
+function readData(){
+ document.getElementById("title").value = "<%=blog.title.replace(/"/g, "'") %>";
+ document.getElementById("body").value  = "<%=blog.body.replace(/"/g, "'") %>"; }
+
+function save(event){
+
+  event.preventDefault();
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4) {
+      alert("I am from if state", xhttp.responseText);
+        document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+  };
+
+  xhttp.open("POST", "/blog/<%=blog.postId%>/", true);
+  xhttp.send(new FormData(document.getElementById('form')));
+}
+
+</script>
+</body>
+</html>

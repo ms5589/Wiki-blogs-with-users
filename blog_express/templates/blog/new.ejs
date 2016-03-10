@@ -1,4 +1,6 @@
-<%- include('../layout/header', {title: "Add Blog to Wiki", user: user}) %>
+<link rel ="stylesheet" href="/prism.css"/>
+<script src="/prism.js"> </script>
+<body>
 <h1>Add Blog to WiKi </h1>
 <form action="/blog" method="POST">
 <p>
@@ -8,10 +10,13 @@
   <label for="body">Write here:</label></br>
   <input name="body" type="text" id="body"
   value="<pre><code class='language-javascript'> //Write your code here...</code></pre>"
-  onkeyup="myFunction()" autocomplete="off" style= "margin-top:0px; font-size: 23px; width: 1000px; height: 200px;"/> </br> </br>
-  </code> </pre>
+  autocomplete="off" style= "margin-top:0px; font-size: 23px; width: 1000px; height: 200px;"/>
 
-  <input type="submit" value="Save" />
+</br> </br>
+  <input type="submit" value="Save" style="font-size: 26px; width: 100px; height: 45px;"/> </br>
+</br>
+  <a href="/blog"> List of Blogs </a>
 
 </p>
 </form>
+</body>

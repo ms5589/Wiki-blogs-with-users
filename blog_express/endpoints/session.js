@@ -11,6 +11,10 @@ class Session {
   new(req, res) {
     res.render('session/new', {message: "", user: req.user});
   }
+
+  msg(req,res){
+    res.render('session/msg', {msg: "", user: req.user});
+  }
   sign(req, res) {
     res.render('session/signup', {message: "", user: req.user});
   }
@@ -31,6 +35,9 @@ class Session {
 
     var salt = encryption.salt();
     var form = new formidable.IncomingForm();
+    req.session.reset();
+    //user = "Guest";
+    //res.render("session/delete", {user: {username: "Guest"}});
     form.parse(req, (err, fields, files) => {
       if(err) return res.sendStatus(500);
       console.log("username: ",fields.username," Pwrd", fields.password);
@@ -38,11 +45,12 @@ class Session {
        fields.username,
        false,
        encryption.digest(fields.password + salt),
-       salt, (err, user) => {
-         if(err) return res.render('session/signup', {message: "Username is already taken.  Please try other username.", user: req.user});
-       }
-      );
-      return res.redirect('/blog');
+       salt, function(err, user) {
+         if(err) {console.log(err); return res.render('session/signup', {message: "Username is already taken.  Please try other username.", user: req.user});}
+         //if(!user) return res.render('session/new', {message: "Username is already taken.  Please try other username.", user: req.user});
+         else { return res.render('session/new', {message: "Account has been created, Please login now.", user: req.user});}
+         return res.redirect('/login');
+       });
     });
   }
 
@@ -50,6 +58,7 @@ class Session {
   // If not, renders the login form with an error message.
   create(req, res, next) {
     req.session.reset();
+    //res.render("session/delete", {user: {username: "Guest"}});
     var form = new formidable.IncomingForm();
     form.parse(req, (err, fields, files) => {
       if(err) return res.sendStatus(500);

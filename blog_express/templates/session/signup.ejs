@@ -1,4 +1,4 @@
-<%- include('../layout/header', {title: "Login", user: user}) %>
+<%- include('../layout/header', {title: "Sign up", user: user}) %>
 <html>
 <body>
 <h1>Sign up</h1>
@@ -7,7 +7,7 @@
 </div>
 <form action="/signup" method="POST">
   <label for="username">Select a Username
-    <input name="username" onkeyup="check()" type="text">
+    <input name="username" type="text">
   </label>
   <label for="password">Choose Password
      <input name="password" type="password">
@@ -16,9 +16,7 @@
 </form>
 </body>
 <script>
-var users =[];
-function check(){
-}
+
 </script>
 
 

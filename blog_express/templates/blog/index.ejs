@@ -1,10 +1,17 @@
 <%- include('../layout/header', {title: "Blogs List", user: user}) %>
 <% title = "Blogs List" %>
+
+<link rel ="stylesheet" href="/prism.css"/>
+<script src="/prism.js"> </script>
+
 <h1>List of Blog</h1>
+
 <ul>
     <% blog.forEach(function(blg) { %>
     <%- include('_blog', {blog: blg}) %>
-  <% }); %>
+    <% }); %>
+  
 </ul>
+
 <a href="/blog/new">Add Blog</a> </br>
 <a href="/users">List of Users</a>

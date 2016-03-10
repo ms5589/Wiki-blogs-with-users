@@ -12,6 +12,11 @@ input {
   color: #ff0000;
 }
 
+.msg {
+  background-color: #33ff33;
+  color: #ff0000;
+}
+
 .right {
   text-align: right;
 }
