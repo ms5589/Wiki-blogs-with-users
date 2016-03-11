@@ -4,14 +4,13 @@
 <body onload="readData()">
 <div id="demo">
 
-<form id= "form" action="/blog/<%=blog.postId%>" method="POST">
+<form id= "form" action="/blog/<%- blog.postId%>" method="POST">
 
 <label for="title" font-size="46px">Title:</label></br>
 <input name="title" id="title" type="text" autocomplete="off" style="font-size: 18px; width: 1000px; height: 32px;"/> </br></br>
-<pre> <code class='language-javascript'>
 <label for="body" font-size="46px">Body:</label></br>
 <input name="body" id="body" type="text"  autocomplete="off" style="font-size: 18px; width: 1000px; height: 104px;"/> </br></br>
-</code> </pre>
+
 <button type="submit" onclick="save" style= "font-size: 12px; height: 30px" >Save changes</button> </br></br>
 
 </form> </br>
@@ -23,8 +22,9 @@
 
 <script>
 function readData(){
- document.getElementById("title").value = "<%=blog.title.replace(/"/g, "'") %>";
- document.getElementById("body").value  = "<%=blog.body.replace(/"/g, "'") %>"; }
+ document.getElementById("title").value = "<%- blog.title.replace(/"/g, "'") %>";
+ document.getElementById("body").value  = "<%- blog.body.replace(/"/g, "'") %>";
+}
 
 function save(event){
 

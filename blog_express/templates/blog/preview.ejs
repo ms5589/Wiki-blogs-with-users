@@ -3,3 +3,31 @@
   <% blog.forEach(function(blg) { %>
   <%- include('_preview', {blog: blg}) %>
   <% }); %>
+
+</br><form action="/blog/'+req.url.split('/')[2]+'/add" method="POST">
+<input name="comment" id="comment" type="text" value=" Add a Comment here..." autocomplete="off" style="font-size: 12px; width: 1000px; height: 32px;"/></br></br>
+
+<button type="submit" onclick="addComment()" style= "font-size: 12px; height: 30px" >Add a Comment</button> </br></br>
+</form> </br>
+<a href="/blog"> Blog lists </a>
+
+</body>
+
+<script>
+function addComment(event, req)
+{
+ //<form action="/blog/'+req.url.split('/')[2]+'/add" method="POST">
+
+  var temp = req.url.split('/')[2];
+  alert(temp);
+  event.preventDefault();
+	var xhttp = new XMLHttpRequest();
+  	xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4) {
+    	alert("I'm from if state", xhttp.responseText);
+        document.getElementById("demo").innerHTML += xhttp.responseText;
+    }
+  };
+  xhttp.open("POST", "/blog/temp/add", true);
+  xhttp.send();
+}

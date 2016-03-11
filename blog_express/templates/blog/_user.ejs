@@ -11,21 +11,13 @@
 
  <label for="admin" font-size="46px">Admin:</label>
  <input name="admin" type="text" id="admin"
- value="<%- blog.admin? 'Yes':'No'%>" onclick="change()"readonly="readonly" autocomplete="off" /> </br>
+ value="<%- blog.admin? 'Yes':'No'%>" readonly="readonly" autocomplete="off" />
+
+ <label for="blockedUser" font-size="46px">User blocked? :</label>
+ <input name="blockedUser" type="text" id="blockedUser"
+ value="<%- blog.blocked? 'Yes':'No'%>" readonly="readonly" autocomplete="off" /> </br>
+
 
 </body>
 
-<script>
-function change(){
-  alert("yo");
-  if("<%= blog.admin %>" == 1){
-  alert("Lol");
-  return "Yes"; }
-  else {
-  document.getElementById("admin").value = "NO";
-  }
-  //document.getElementById("admin").value = "Yes";
- }
-}
-</script>
 </html>

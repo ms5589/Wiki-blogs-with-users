@@ -1,10 +1,5 @@
-<style type= "text/css">
-	  h1{ color: blue; font-size: 23px;}
-	  h2{color: black; font-size: 10px;}
-</style>
+<h1><u> Comments</u>!</h1>
 
-<fieldset>
-<h1><u> Comments</u> !</h1>
-<h2> click 'x' to delete corresponding comment</h2>
-<%= partial('blog/_preview', params)%>
-</fieldset>
+  <% blog.forEach(function(blg) { %>
+  <%= partial('_preview', {blog: blg}) %>
+  <% }); %>

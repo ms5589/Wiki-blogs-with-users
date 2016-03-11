@@ -111,19 +111,23 @@ class Blog {
    });
  }
 
-preview(req, res) {
+ preview(req, res) {
   console.log("ParamId in preview method: ", req.params.id);
+  var temp = req.url.split('/')[2];
   var blog = db.all('SELECT * from Comment where postid=?', req.params.id, function(err, item){
     if(err) {
       console.error(err);
       return res.sendStatus(400);
     }
+    //res.redirect('/blog/'+temp+'/preview');
     res.render('blog/preview', {blog: item, user: req.user});
+
   });
 }
 
   new(req, res) {
     res.render('blog/new', {user: req.user});
+
   }
 
   destroy(req, res) {
@@ -133,9 +137,10 @@ preview(req, res) {
   }
 
   del(req, res) {
-
+    var temp = req.url.split('/')[2];
+    //console.log("I am del temp", req.params.postid);
     db.run('DELETE FROM Comment WHERE comntId=?', req.params.id);
-    res.redirect('/blog');
+    res.redirect('/blog/'+temp+'/preview');
   }
 
   redirect(req, res) {

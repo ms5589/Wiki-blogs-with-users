@@ -6,7 +6,7 @@ function blockedUser(req, res, next) {
   if(req.user && req.user.blocked)
   {
     res.writeHead(403, {"Content-Type":"text/html"});
-    res.end("Sorry, you no longer have access!");
+    res.end("Sorry, you no longer have access for requested action!");
   }
   else
   {

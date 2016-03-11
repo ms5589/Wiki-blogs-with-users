@@ -1,12 +1,32 @@
 <li>
 <h3>
-<%=blog.body%>&nbsp&nbsp&nbsp&nbsp&nbsp
-<a method="delete" href="/blog/<%= blog.comntId%>/del"> x</a>
+
+  [<%= blog.body %>]
+  &nbsp&nbsp&nbsp&nbsp&nbsp
+  <a method="delete" href="/blog/<%= blog.comntId%>/del"> x</a>
 </h3>
 </li>
-<script type="text/javascript">
+</br><form action="/blog/<%= blog.postid%>/add" method="POST">
 
-function remove(){
-	alert("Remove");
+<input name="comment" id="comment" type="text" value=" Add a Comment here..." autocomplete="off" style="font-size: 12px; width: 1000px; height: 32px;"/></br></br>
+
+<button type="submit" onclick="addComment()" style= "font-size: 12px; height: 30px" >Add a Comment</button> </br></br>
+</form> </br>
+<a href="/blog"> Blog lists </a>
+</div>
+</body>
+
+<script>
+function addComment(event)
+{
+	event.preventDefault();
+	var xhttp = new XMLHttpRequest();
+  	xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4) {
+    	alert("I'm from if state", xhttp.responseText);
+        document.getElementById("demo").innerHTML += xhttp.responseText;
+    }
+  };
+  xhttp.open("POST", "/blog/<%= blog.postid%>/add", true);
+  xhttp.send();
 }
-</script>
