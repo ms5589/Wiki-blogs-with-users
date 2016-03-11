@@ -9,14 +9,16 @@ class Session {
 
   // Renders a login form with no error message
   new(req, res) {
-    res.render('session/new', {message: "", user: req.user});
+    req.session.reset();
+    res.render('session/new', {message: "", user: {username: "Guest"}});
   }
 
   msg(req,res){
     res.render('session/msg', {msg: "", user: req.user});
   }
   sign(req, res) {
-    res.render('session/signup', {message: "", user: req.user});
+    req.session.reset();
+    res.render('session/signup', {message: "", user: {username: "Guest"}});
   }
 
   check(req,res){
@@ -31,8 +33,6 @@ class Session {
 
   // Method that lets user to create an account
   signup(req,res,next) {
-    //req.session.reset();
-
     var salt = encryption.salt();
     var form = new formidable.IncomingForm();
     req.session.reset();
@@ -69,6 +69,17 @@ class Session {
         req.session.user_id = user.id;
         return res.redirect('/blog');
       });
+    });
+  }
+
+   block(req, res) {
+       var form = new formidable.IncomingForm();
+       var temp = req.url.split('/')[2]
+       form.parse(req, function(err, fields, files) {
+       db.run('UPDATE users SET blocked= ? WHERE username = ?',true, fields.blockUser);
+       /*'UPDATE Post SET title = ?, body = ? WHERE postId = ?', fields.title, fields.body, temp */
+       console.log("User blocked", temp);
+       res.redirect('/users');
     });
   }
 

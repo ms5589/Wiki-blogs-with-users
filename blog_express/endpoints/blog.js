@@ -7,6 +7,14 @@ var db = require('../db'),
 // This should have methods for all the RESTful actions
 class Blog {
 
+  prismcss(req, res) {
+    res.render('blog/prism.css', {user: req.user});
+  }
+
+  prismjs(req, res) {
+    res.render('blog/prism.js', {user: req.user});
+  }
+
   index(req, res) {
     var blog = db.all('SELECT * FROM Post', function(err, blog){
       if(err) {
@@ -103,16 +111,16 @@ class Blog {
    });
  }
 
-   preview(req, res) {
-    console.log("ParamId in preview method: ", req.params.id);
-    var blog = db.all('SELECT * from Comment where postid=?', req.params.id, function(err, item){
-      if(err) {
-        console.error(err);
-        return res.sendStatus(400);
-      }
-      res.render('blog/preview', {blog: item, user: req.user});
-    });
-  }
+preview(req, res) {
+  console.log("ParamId in preview method: ", req.params.id);
+  var blog = db.all('SELECT * from Comment where postid=?', req.params.id, function(err, item){
+    if(err) {
+      console.error(err);
+      return res.sendStatus(400);
+    }
+    res.render('blog/preview', {blog: item, user: req.user});
+  });
+}
 
   new(req, res) {
     res.render('blog/new', {user: req.user});
@@ -125,7 +133,7 @@ class Blog {
   }
 
   del(req, res) {
-    
+
     db.run('DELETE FROM Comment WHERE comntId=?', req.params.id);
     res.redirect('/blog');
   }

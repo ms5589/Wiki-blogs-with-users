@@ -5,12 +5,24 @@
 
     <% blog.forEach(function(blg) { %>
     <%- include('_user', {blog: blg}) %>
-    <% }); %>
-    
-</br><a class='bttn' href="/blog">List of blogs</a>
-</body>
+    <% }); %> </br> </br>
+    <form action="/block" method="POST">
+    <input name="blockUser" id="blockUser" type="text" value=" Enter a username here to block that user," autocomplete="off" style="font-size: 12px; width: 1000px; height: 25px;"/>
+    <button type="submit" onclick="blockUser()" style= "font-size: 12px; height: 25px" >Block</button> </br></br>
+    <a class='bttn' href="/blog">List of blogs</a>
+
 <script>
-
-
-
-</script>
+function blockUser(event)
+{
+	event.preventDefault();
+	var xhttp = new XMLHttpRequest();
+  	xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4) {
+    	alert("I'm from if state", xhttp.responseText);
+        document.getElementById("demo").innerHTML += xhttp.responseText;
+    }
+  };
+  xhttp.open("POST", "/block", true);
+  xhttp.send();
+}</script>
+</body>

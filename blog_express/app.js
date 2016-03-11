@@ -5,18 +5,31 @@ var express = require('express'),
     loadUser = require('./middleware/load_user'),
     noGuests = require('./middleware/no_guests'),
     adminOnly = require('./middleware/admin_only'),
+    blockedUser = require('././middleware/block')
     encryption = require('./encryption');
     var data1 = fs.readFileSync('templates/blog/prism.css', {encoding: "utf-8"});
     var data2 = fs.readFileSync('templates/blog/prism.js', {encoding: "utf-8"});
+    var img = fs.readFileSync('signup.jpg');
+    var img2 = fs.readFileSync('login.jpg');
+
+app.get('/prism.css', function(req, res){
+    res.writeHead(200, {'Content-Type': 'text/css'})
+    res.end(data1);
+});
 
 app.get('/prism.js', function(req, res){
     res.writeHead(200, {'Content-Type': 'text/javascript'})
     res.end(data2);
 });
 
-app.get('/prism.css', function(req, res){
-    res.writeHead(200, {'Content-Type': 'text/css'})
-    res.end(data1);
+app.get('/signup.jpg', function(req, res){
+    res.writeHead(200, {'Content-Type': 'image/*'})
+    res.end(img);
+});
+
+app.get('/login.jpg', function(req, res){
+    res.writeHead(200, {'Content-Type': 'image/*'})
+    res.end(img2);
 });
 
 // Enable template engine
@@ -44,25 +57,28 @@ app.post('/login', session.create);
 app.get('/signup', session.sign);
 app.post('/signup', session.signup);
 app.get('/logout', session.destroy);
+app.post('/block',adminOnly, session.block);
 
 // Blog routes
 var blog = require('./endpoints/blog');
+app.get('/prism.css', blog.prismcss);
+app.get('/prism.js', blog.prismjs);
 app.get('/blog', blog.index);
-app.get('/blog/new', noGuests, blog.new);
+app.get('/blog/new', noGuests, blockedUser, blog.new);
 app.get('/blog/:id', blog.show);
-app.get('/blog/:id/edit',noGuests, blog.edit);
+app.get('/blog/:id/edit',noGuests, blockedUser, blog.edit);
 app.post('/blog/:id', blog.change);
-app.post('/blog/:id/add',noGuests, blog.add);
-app.post('/blog', blog.create);
+app.post('/blog/:id/add',noGuests, blockedUser, blog.add);
+app.post('/blog', blockedUser, blog.create);
 app.get('/blog/:id/preview', blog.preview);
 app.get('/users', adminOnly, blog.users);
-app.get('/blog/:id/delete', noGuests, blog.destroy);
-app.get('/blog/:id/del', noGuests, blog.del);
+app.get('/blog/:id/delete', noGuests,blockedUser, blog.destroy);
+app.get('/blog/:id/del', noGuests, blockedUser,blog.del);
 
 // Reservation routes
 var reservation = require('./endpoints/reservation');
 app.get('/reservation/new', noGuests, reservation.new);
 
-app.listen(9090, () => {
-  console.log("Listening on port 9090...");
+app.listen(8080, () => {
+  console.log("Listening on port 8080...");
 });

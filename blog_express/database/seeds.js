@@ -6,13 +6,14 @@ var sqlite3 = require('sqlite3'),
 db.serialize(function() {
 
   // Create the users table
-  db.run("CREATE TABLE if not exists users (id INTEGER PRIMARY KEY, username TEXT UNIQUE, admin BOOLEAN, password_digest TEXT, salt TEXT)");
+  db.run("CREATE TABLE if not exists users (id INTEGER PRIMARY KEY, username TEXT UNIQUE, admin BOOLEAN, blocked BOOLEAN, password_digest TEXT, salt TEXT)");
   // Create a default user
   var salt = encryption.salt();
-   db.run("INSERT INTO users (username, admin, password_digest, salt) values (?,?,?,?)",
-    'sagar5589',
-    true,
-    encryption.digest('12345' + salt),
+   db.run("INSERT INTO users (username, admin, blocked, password_digest, salt) values (?,?,?,?,?)",
+    'zeel',
+    false,
+    false,
+    encryption.digest('123456' + salt),
     salt
   );
   // Log contents of the user table to the console

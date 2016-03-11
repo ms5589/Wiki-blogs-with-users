@@ -11,7 +11,7 @@
 
  <label for="admin" font-size="46px">Admin:</label>
  <input name="admin" type="text" id="admin"
- value="<%= blog.admin %>" onclick="change()"readonly="readonly" autocomplete="off" /> </br>
+ value="<%- blog.admin? 'Yes':'No'%>" onclick="change()"readonly="readonly" autocomplete="off" /> </br>
 
 </body>
 
