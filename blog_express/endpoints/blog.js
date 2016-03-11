@@ -81,6 +81,7 @@ class Blog {
         fields.title,
         fields.body
       );
+
       res.redirect('/blog');
     });
   }
@@ -119,8 +120,10 @@ class Blog {
       console.error(err);
       return res.sendStatus(400);
     }
-    //res.redirect('/blog/'+temp+'/preview');
-    res.render('blog/preview', {blog: item, user: req.user});
+    console.log("Read me, I am blog", blog.value);
+    res.render('blog/preview', {blog: item, postid: req.params.id,  user: req.user});
+      //res.render('blog/_preview', {blog: item, user: req.user});
+
 
   });
 }
@@ -140,7 +143,7 @@ class Blog {
     var temp = req.url.split('/')[2];
     //console.log("I am del temp", req.params.postid);
     db.run('DELETE FROM Comment WHERE comntId=?', req.params.id);
-    res.redirect('/blog/'+temp+'/preview');
+    res.redirect('/blog');
   }
 
   redirect(req, res) {

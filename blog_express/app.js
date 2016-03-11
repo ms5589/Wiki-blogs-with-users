@@ -72,8 +72,8 @@ app.post('/blog/:id/add',noGuests, blockedUser, blog.add);
 app.post('/blog', blockedUser, blog.create);
 app.get('/blog/:id/preview', blog.preview);
 app.get('/users', adminOnly, blog.users);
-app.get('/blog/:id/delete', noGuests,blockedUser, blog.destroy);
-app.get('/blog/:id/del', noGuests, blockedUser,blog.del);
+app.get('/blog/:id/delete', noGuests, blockedUser, blog.destroy);
+app.get('/blog/:id/del', noGuests, blockedUser, blog.del);
 
 // Reservation routes
 var reservation = require('./endpoints/reservation');
