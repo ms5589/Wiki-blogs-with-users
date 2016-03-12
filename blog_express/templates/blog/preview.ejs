@@ -1,3 +1,10 @@
+<style>
+body{ background-color:#cccccc;}
+a {font-size: 23px; color: #330033;}
+a:hover {color: #6600cc; font-size: 32px;}
+</style>
+<title> Talk page</title>
+<fieldset>
 <h1><u> Comments</u>!</h1>
 
   <% blog.forEach(function(blg) { %>
@@ -6,16 +13,15 @@
 
 </br><form action="/blog/<%- postid %>/add" method="POST">
 <input name="comment" id="comment" type="text" value=" Add a Comment here..." autocomplete="off" style="font-size: 12px; width: 1000px; height: 32px;"/></br></br>
+<button type="submit" onclick="addComment()" style= "font-size: 26px; width:250px; height: 35px" >Add a Comment</button> </br></br>
+</form>
 
-<button type="submit" onclick="addComment()" style= "font-size: 12px; height: 30px" >Add a Comment</button> </br></br>
-</form> </br>
-<a href="/blog"> Blog lists </a>
+</fieldset></br>
+<fieldset> <a href="/blog"> Blog lists </a> </fieldset>
 
 <script>
 function addComment(event, req)
 {
- //<form action="/blog/'+req.url.split('/')[2]+'/add" method="POST">
-
   var temp = req.url.split('/')[2];
   alert(temp);
   event.preventDefault();

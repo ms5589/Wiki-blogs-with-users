@@ -1,15 +1,27 @@
+<style>
 
+  body{ background-color:#cccccc;}
+  a {font-size: 23px; color: #330033;}
+  a:hover {color: #6600cc; font-size: 32px;}
+
+</style>
 <html>
 <body onload="myFunction()">
+<title> Users </title>
 <h1>List of users</h1>
 
     <% blog.forEach(function(blg) { %>
     <%- include('_user', {blog: blg}) %>
-    <% }); %> </br> </br>
+    <% }); %> </br>
+
     <form action="/block" method="POST">
     <input name="blockUser" id="blockUser" type="text" value=" Enter a username here to block that user," autocomplete="off" style="font-size: 12px; width: 1000px; height: 25px;"/>
     <button type="submit" onclick="blockUser()" style= "font-size: 12px; height: 25px" >Block</button> </br></br>
-    <a class='bttn' href="/blog">List of blogs</a>
+
+    <fieldset>
+    <a href="/blog/new">Add a new Blog</a>&nbsp&nbsp&nbsp&nbsp
+    <a href="/blog/">List of Blogs</a>
+    </fieldset>
 
 <script>
 function blockUser(event)

@@ -1,22 +1,39 @@
+<%- include('../layout/header', {title: "Add a Post", user: user}) %>
+<% title = "Users List" %>
+</br>
+<style>
+body{ background-color:#cccccc;}
+a {font-size: 23px; color: #330033;}
+a:hover {color: #6600cc; font-size: 32px;}
+h8 { font-size: 15px; color: black;}
+</style>
 <link rel ="stylesheet" href="/prism.css"/>
 <script src="/prism.js"> </script>
 <body>
+  <fieldset>
 <h1>Add Blog to WiKi </h1>
 <form action="/blog" method="POST">
 <p>
   <label for="title" style= "font-size:26px color: Black">Title:</label></br>
-  <input name="title" type="text" autocomplete="off" style="font-size: 16px; width: 1000px; height: 40px;"/></br> </br>
+  <input name="title" type="text" autocomplete="off" style="font-size: 16px; width: 1000px; height: 40px;"/></br>
 
-  <label for="body">Write here:</label></br>
+  <label for="body">Write here:</label>
+  <h8> (You can also user Markdown and click Display/Preview to see the output)</h8></br>
   <input name="body" type="text" id="body"
   value="<pre><code class='language-javascript'> //Write your code here...</code></pre>"
-  autocomplete="off" style= "margin-top:0px; font-size: 23px; width: 1000px; height: 200px;"/>
+  autocomplete="off" style= "margin-top:0px; font-size: 23px; width: 1000px; height: 200px;"/></br>
 
-</br> </br>
-  <input type="submit" value="Save" style="font-size: 26px; width: 100px; height: 45px;"/> </br>
-</br>
-  <a href="/blog"> List of Blogs </a>
-
-</p>
+<button type="submit" onclick="save" style= "font-size: 26px; width:250px; height: 35px" >Save changes</button>
 </form>
+<button id="display-btn" style="font-size: 26px; width: 250px; height: 35px;"> Display/Preview </button></br>
+</br>
+<script src="/public/bundle.js"></script>
+<div id="pane">
+</div>
+</fieldset></br>
+<fieldset>
+  <a href="/blog/">List of Blogs</a>
+</fieldset>
+</p> </br>
+
 </body>

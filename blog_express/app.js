@@ -12,6 +12,8 @@ var express = require('express'),
     var img = fs.readFileSync('signup.jpg');
     var img2 = fs.readFileSync('login.jpg');
 
+app.use('/public', express.static(__dirname+'//public'));
+
 app.get('/prism.css', function(req, res){
     res.writeHead(200, {'Content-Type': 'text/css'})
     res.end(data1);
@@ -53,6 +55,8 @@ app.use(express.static('public'));
 // Login routes
 var session = require('./endpoints/session');
 app.get('/login', session.new);
+app.get('/', session.new);
+app.get('/index', session.new);
 app.post('/login', session.create);
 app.get('/signup', session.sign);
 app.post('/signup', session.signup);

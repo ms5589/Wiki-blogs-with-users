@@ -1,12 +1,12 @@
+<style>
+body{ background-color:#cccccc;}
+</style>
 <link rel ="stylesheet" href="prism.css"/>
 <script src="prism.js"> </script>
-
+<div id="pane">
 <h1> <li>
-  <a href="/blog/<%= blog.postId %>">
-
-    [<%= blog.title %>]
-
-  </a> &nbsp;
-  <a href="/blog/<%= blog.postId %>/edit">Edit </a>&nbsp&nbsp&nbsp&nbsp&nbsp
+  <a href="/blog/<%= blog.postId %>"><%= blog.title%></a> &nbsp;
+  <a href="/blog/<%= blog.postId %>/edit"> Edit </a>&nbsp&nbsp&nbsp&nbsp&nbsp
   <a class='bttn' href="/blog/<%= blog.postId %>/delete">x</a>
 </li> </h1>
+</div>

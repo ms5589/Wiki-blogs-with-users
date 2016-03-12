@@ -1,21 +1,30 @@
+<style>
+body{ background-color:#cccccc;}
+a {font-size: 23px; color: #330033;}
+a:hover {color: #6600cc; font-size: 32px;}
+</style>
 <link rel ="stylesheet" href="/prism.css"/>
 <script src="/prism.js"> </script>
-
+<title> Blog </title>
 <body>
 <div id="demo">
 <fieldset>
+
 <article>
-<%- blog.title %>
+<%= blog.title %>
+
 </br></br></br>
-
+<script src="/public/bundle.js"></script>
+<div id="pane">
 <%- blog.body %>
-
+</div>
 </article>
-</fieldset>
-
-</br> <a href="/blog"> List of Blogs </a> </br>
+</fieldset></br>
+<fieldset>
+</br> <a href="/blog"> List of Blogs </a>&nbsp&nbsp&nbsp&nbsp
 <a href="/blog/<%=blog.postId%>/preview"> Go to talk/comment page </a>
 </div>
+</fieldset>
 </body>
 
 <script>

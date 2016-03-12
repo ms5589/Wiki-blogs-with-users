@@ -41,8 +41,9 @@ class Session {
     form.parse(req, (err, fields, files) => {
       if(err) return res.sendStatus(500);
       console.log("username: ",fields.username," Pwrd", fields.password);
-      db.run("INSERT INTO users (username, admin, password_digest, salt) values (?,?,?,?)",
+      db.run("INSERT INTO users (username, admin, blocked, password_digest, salt) values (?,?,?,?,?)",
        fields.username,
+       false,
        false,
        encryption.digest(fields.password + salt),
        salt, function(err, user) {

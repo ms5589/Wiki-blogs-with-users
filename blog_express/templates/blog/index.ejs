@@ -1,3 +1,8 @@
+<style>
+a {font-size: 23px; color: #330033;}
+a:hover {color: #6600cc; font-size: 32px;}
+</style>
+
 <%- include('../layout/header', {title: "Blogs List", user: user}) %>
 <% title = "Blogs List" %>
 
@@ -5,13 +10,18 @@
 <script src="/prism.js"> </script>
 
 <h1>List of Blog</h1>
-
+<fieldset>
+<div id="pane">
 <ul>
     <% blog.forEach(function(blg) { %>
     <%- include('_blog', {blog: blg}) %>
     <% }); %>
-  
-</ul>
 
-<a href="/blog/new">Add Blog</a> </br>
+</ul>
+</div>
+</fieldset></br>
+
+<fieldset>
+<a href="/blog/new">Add a new Blog</a>&nbsp&nbsp&nbsp&nbsp
 <a href="/users">List of Users</a>
+</fieldset>

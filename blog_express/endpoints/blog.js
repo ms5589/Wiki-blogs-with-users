@@ -1,10 +1,9 @@
 "use strict"
 
 var db = require('../db'),
-    formidable = require('formidable');
-//this is temp comment
-// A controller for the equipment resource
-// This should have methods for all the RESTful actions
+    formidable = require('formidable'),
+    marked = require('marked');
+
 class Blog {
 
   prismcss(req, res) {
@@ -63,18 +62,9 @@ class Blog {
       }
       res.render('blog/show', {blog: item, user: req.user});
     });
-    /*var comments = db.all('SELECT * from Comment where postid=?', req.params.id, function(err, item){
-       if(err)
-        {
-          console.log(err);
-          res.writeHead(400);
-        }
-        //res.writeHead(200, {"Content-Type":"text/html"});
-        res.render('blog/show', {comments: item, user: req.user});
-    }); */
+
   }
   create(req, res) {
-    //console.log("I am in create");
     var form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files) {
       db.run('INSERT INTO Post (title, body) values (?,?)',
@@ -95,7 +85,6 @@ class Blog {
     form.parse(req, function(err, fields, files) {
       console.log("FIELDS", fields);
     db.run('UPDATE Post SET title = ?, body = ? WHERE postId = ?', fields.title, fields.body, temp);
-    //db.run('INSERT INTO Post(title, body) values (?,?)',fields.title, fields.body);
     console.log("Changing TITLE: ",fields.title);
     res.redirect('/blog');
     console.log("Blog edited");
@@ -122,9 +111,6 @@ class Blog {
     }
     console.log("Read me, I am blog", blog.value);
     res.render('blog/preview', {blog: item, postid: req.params.id,  user: req.user});
-      //res.render('blog/_preview', {blog: item, user: req.user});
-
-
   });
 }
 
