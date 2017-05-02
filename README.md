@@ -6,10 +6,10 @@ Users can also comment on the other user's blog
 
 To install type,
 
-npm install
+# npm install
 
 To run the application,
 
-node app.js
+# node app.js
 
 on your terminal.
